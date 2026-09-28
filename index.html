@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fidla | Kavárna Smiřice</title>
+
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --yellow:#f4e49a;
+    --yellow-soft:#fbf3c8;
+    --cream:#f8f5ee;
+    --paper:#fffdf8;
+    --white:#ffffff;
+    --black:#111111;
+    --text:#25231f;
+    --line:rgba(17,17,17,.15);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:68px;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    overflow-x:hidden;
+}
+
+body.menu-open,
+body.lightbox-open{
+    overflow:hidden;
+}
+
+img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+.serif{
+    font-family:"Manrope",sans-serif;
+}
+
+.section-label{
+    display:block;
+    font-size:11px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:2.2px;
+    margin-bottom:17px;
+}
+
+.text-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:25px;
+    padding-bottom:4px;
+    border-bottom:1px solid currentColor;
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+}
+
+.photo{
+    overflow:hidden;
+}
+
+
+/* ==================================================
+   NAV
+================================================== */
+
+.navbar{
+    height:68px;
+    padding:0 5.8vw;
+    background:var(--yellow);
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    border-bottom:1px solid rgba(17,17,17,.12);
+}
+
+.nav-links{
+    grid-column:1;
+    justify-self:start;
+    display:flex;
+    list-style:none;
+    gap:38px;
+    align-items:center;
+}
+
+.nav-links a{
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.15px;
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:1px;
+    background:var(--black);
+    transition:.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-order{
+    justify-self:end;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.15px;
+}
+
+.menu-toggle{
+    display:none;
+    justify-self:end;
+    border:0;
+    background:none;
+    font-size:27px;
+    cursor:pointer;
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero{
+    position:relative;
+    width:100%;
+    height:620px;
+    overflow:hidden;
+    background:var(--black);
+}
+
+.hero-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 60%,
+            rgba(0,0,0,.20) 100%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.52) 0%,
+            rgba(0,0,0,.52) 40%,
+            rgba(0,0,0,.25) 48%,
+            transparent 60%
+        );
+}
+
+.hero-content{
+    position:absolute;
+    left:6vw;
+    bottom:100px;
+    z-index:2;
+    width:min(610px,82%);
+    color:white;
+}
+
+.hero-content .section-label{
+    color:white;
+}
+
+.hero h1{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(52px,5vw,78px);
+    font-weight:500;
+    line-height:.92;
+    letter-spacing:-2.5px;
+    margin-bottom:24px;
+    text-transform: uppercase;
+}
+
+.hero-city{
+    display:inline-block;
+    margin-top:14px;
+    letter-spacing:4px;
+}
+
+.hero-logo{
+    width:190px;
+    height:auto;
+    object-fit:contain;
+    margin-bottom:22px;
+
+
+    filter:brightness(0) invert(1);
+}
+
+.hero-text{
+    max-width:600px;
+    font-size:16px;
+    line-height:1.65;
+    color:rgba(255,255,255,.92);
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:30px;
+}
+
+.hero-button{
+    min-width:165px;
+    padding:14px 22px;
+    border:1px solid rgba(255,255,255,.8);
+    text-align:center;
+    font-size:11px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.hero-button.primary{
+    background:var(--yellow);
+    color:var(--black);
+    border-color:var(--yellow);
+}
+
+.hero-button:hover{
+    background:white;
+    border-color:white;
+    color:var(--black);
+}
+
+
+/* ==================================================
+   IDENTITY STRIP
+================================================== */
+
+.identity-strip{
+    min-height:58px;
+    background:var(--black);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:31px;
+    padding:17px 30px;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.identity-strip span{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.7px;
+}
+
+.identity-strip i{
+    width:5px;
+    height:5px;
+    flex:0 0 5px;
+    border-radius:50%;
+    background:var(--yellow);
+}
+
+.fidla-slogan{
+    min-height:58px;
+    background:var(--black);
+    color:var(--yellow);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    padding:10px 30px;
+
+    font-family:"DM Sans",sans-serif;
+    font-size:12px;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:1.7px;
+}
+
+.fidla-slogan strong{
+    font-family:"Caveat",cursive;
+    font-size:37px;
+    font-weight:500;
+    text-transform:none;
+    letter-spacing:0;
+    white-space:nowrap;
+}
+
+/* ==================================================
+   INTRO / WHAT IS FIDLA
+================================================== */
+
+.fidla-intro{
+    display:grid;
+    grid-template-columns:38% 32% 30%;
+    background:var(--paper);
+}
+
+.intro-copy{
+    padding:40px 6vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.intro-copy h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(48px,4.6vw,74px);
+    line-height:.86;
+    font-weight:500;
+    letter-spacing:-2px;
+    margin-bottom:27px;
+}
+
+.intro-copy p{
+    max-width:470px;
+    font-size:16px;
+    line-height:1.75;
+}
+
+.intro-display{
+    height:auto;
+    display:block;
+}
+
+.intro-display img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+}
+
+.offer-list{
+    background:var(--yellow-soft);
+    padding:55px 34px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.offer-item{
+    min-height:70px;
+    border-bottom:1px solid rgba(17,17,17,.16);
+    display:grid;
+    grid-template-columns:36px 1fr;
+    align-items:center;
+    gap:12px;
+}
+
+.offer-item:last-child{
+    border-bottom:0;
+}
+
+.offer-mark{
+    width:7px;
+    height:7px;
+    background:#111;
+    border-radius:50%;
+    flex-shrink:0;
+    transform:translateX(18px);
+}
+
+.offer-icon{
+    font-family:"Manrope",sans-serif;
+    font-size:26px;
+    text-align:center;
+}
+
+.offer-item span:last-child{
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1.1px;
+    line-height:1.4;
+}
+
+
+/* ==================================================
+   BREAKFAST
+================================================== */
+
+.breakfast{
+    display:grid;
+    grid-template-columns:32% 28% 40%;
+    min-height:485px;
+    background:var(--yellow);
+}
+
+.breakfast-photo-left,
+.breakfast-photo-right{
+    min-height:485px;
+}
+
+.breakfast-copy{
+    background:var(--yellow);
+    padding:55px 4vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.breakfast-copy h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(48px,4.8vw,75px);
+    line-height:.85;
+    font-weight:500;
+    letter-spacing:-2px;
+    margin-bottom:25px;
+}
+
+.breakfast-copy p{
+    font-size:16px;
+    line-height:1.7;
+    max-width:360px;
+}
+
+
+/* ==================================================
+   PRODUCTION
+================================================== */
+
+.production{
+    background:var(--paper);
+}
+
+.production-grid{
+    height:620px;
+    display:grid;
+    grid-template-columns:32% 28% 40%;
+    overflow:hidden;
+}
+
+.production-cake{
+    height:620px;
+    min-height:0;
+}
+
+.production-mosaic{
+    height:620px;
+}
+
+.production-copy{
+    padding:60px 4.2vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background:var(--paper);
+}
+
+.production-copy h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(48px,5vw,78px);
+    font-weight:500;
+    line-height:.84;
+    letter-spacing:-2.5px;
+    margin-bottom:27px;
+}
+
+.production-copy p{
+    font-size:16px;
+    line-height:1.72;
+}
+
+.production-mosaic{
+    display:grid;
+    grid-template-columns:1fr .72fr;
+    grid-template-rows:42% 58%;
+    gap:0px;
+    background:var(--cream);
+}
+
+.production-small{
+    grid-column:1;
+    grid-row:1;
+}
+
+.production-sweetbar{
+    grid-column:1;
+    grid-row:2;
+}
+
+.production-tall{
+    grid-column:2;
+    grid-row:1 / 3;
+}
+
+
+/* ==================================================
+   GASTRO
+================================================== */
+
+.gastro{
+    min-height:240px;
+    background:var(--black);
+    color:white;
+    display:grid;
+    grid-template-columns:37% 63%;
+}
+
+.gastro-copy{
+    padding:36px 6vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.gastro-copy h2{
+    font-family:"Manrope",sans-serif;
+    font-size:46px;
+    font-weight:500;
+    line-height:.95;
+    margin-bottom:19px;
+}
+
+.gastro-copy p{
+    max-width:460px;
+    color:rgba(255,255,255,.78);
+    font-size:16px;
+    line-height:1.7;
+}
+
+.gastro-places{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:36px 5vw;
+    border-left:1px solid rgba(255,255,255,.14);
+}
+
+.gastro-label{
+    color:var(--yellow);
+    font-size:10px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    margin-bottom:18px;
+}
+
+.gastro-names{
+    display:flex;
+    align-items:center;
+    gap:26px;
+}
+
+.gastro-names strong{
+    font-family:"Manrope",sans-serif;
+    font-size:30px;
+    font-weight:400;
+    line-height:1.1;
+}
+
+.gastro-and{
+    font-size:14px;
+    font-weight:400;
+    margin:0 8px;
+    vertical-align:middle;
+}
+
+
+/* ==================================================
+   SPACES
+================================================== */
+
+.spaces{
+    background:var(--paper);
+}
+
+.spaces-copy{
+    background:var(--paper);
+    padding:55px 6vw 50px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.spaces-copy h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(46px,4.2vw,68px);
+    line-height:.95;
+    font-weight:500;
+    letter-spacing:-2px;
+    margin-bottom:20px;
+}
+
+.spaces-copy p{
+    max-width:820px;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.spaces-copy .text-link{
+    margin-top:22px;
+}
+
+.spaces-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.space-item{
+    min-width:0;
+    border-left:1px solid var(--line);
+}
+
+.space-item:first-child{
+    border-left:0;
+}
+
+.space-image{
+    height:390px;
+}
+
+.space-info{
+    padding:22px 26px 28px;
+    min-height:105px;
+    text-align:center;
+}
+
+.space-info h3{
+    font-size:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    margin-bottom:0;
+}
+.space-info p{
+    font-size:12px;
+    line-height:1.55;
+    color:#625e55;
+}
+
+.space-item:nth-child(2) .space-image img{
+    object-position:center 25%;
+}
+
+.space-item:nth-child(3) .space-image img{
+    object-position:95% center;
+}
+
+
+/* ==================================================
+   GALLERY
+================================================== */
+
+.gallery{
+    background:var(--cream);
+    padding-top:80px;
+}
+
+.gallery-heading{
+    padding:0 6vw 50px;
+    display:block;
+    text-align:center;
+}
+
+.gallery-heading h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(46px,4.2vw,68px);
+    line-height:.95;
+    font-weight:500;
+    letter-spacing:-2px;
+    text-align:center;
+}
+
+.gallery-heading p{
+    max-width:340px;
+    font-size:13px;
+    line-height:1.65;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    grid-auto-rows:230px;
+    gap:3px;
+}
+
+.gallery-item{
+    overflow:hidden;
+    cursor:pointer;
+}
+
+
+
+.gallery-item:nth-child(1){
+    grid-column:span 2;
+    grid-row:span 2;
+}
+
+.gallery-item:nth-child(4){
+    grid-row:span 2;
+}
+.gallery-empty{
+    background:#f4f1eb;
+    cursor:default;
+}
+
+.gallery-contact-divider{
+    width:100%;
+    height:60px;
+    background:var(--black);
+}
+
+
+/* ==================================================
+   CONTACT
+================================================== */
+
+.contact{
+    background:var(--yellow);
+}
+
+.contact-logo{
+    min-height:330px;
+    background:var(--yellow);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:55px;
+}
+
+.contact-logo img{
+    width:min(260px, 78%);
+    height:auto;
+    object-fit:contain;
+}
+
+.contact-grid{
+    min-height:330px;
+    display:grid;
+    grid-template-columns:28% 44% 28%;
+}
+
+.contact-title{
+    padding:55px 5vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.contact-title h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(44px, 3.8vw, 62px);
+    font-weight:500;
+    line-height:1.05;
+    letter-spacing:-2px;
+}
+
+.contact-info{
+    background:var(--paper);
+    padding:48px 4vw;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    align-content:center;
+}
+
+.contact-box small{
+    display:block;
+    margin-bottom:12px;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.6px;
+    font-weight:700;
+}
+
+.contact-box p,
+.contact-box a{
+    font-size:15px;
+    line-height:1.65;
+    font-weight:500;
+}
+
+.contact-actions{
+    grid-column:1 / 4;
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+}
+
+.contact-btn{
+    flex:1;
+    min-height:44px;
+    border:1px solid var(--black);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px;
+    font-size:10px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    transition:.3s;
+}
+
+.contact-btn:hover{
+    background:var(--black);
+    color:white;
+}
+
+.contact-map{
+    position:relative;
+    overflow:hidden;
+    min-height:330px;
+    background:#e9e6dc;
+}
+
+.fake-map{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(27deg, transparent 48%, rgba(255,255,255,.85) 49%, rgba(255,255,255,.85) 51%, transparent 52%),
+        linear-gradient(-34deg, transparent 44%, rgba(255,255,255,.7) 45%, rgba(255,255,255,.7) 47%, transparent 48%),
+        #e2eadc;
+}
+
+.map-road{
+    position:absolute;
+    left:-10%;
+    top:48%;
+    width:130%;
+    height:15px;
+    background:#fff;
+    transform:rotate(-10deg);
+}
+
+.map-pin{
+    position:absolute;
+    left:53%;
+    top:42%;
+    transform:translate(-50%,-50%);
+    width:38px;
+    height:38px;
+    background:var(--black);
+    color:white;
+    border-radius:50% 50% 50% 0;
+    transform-origin:center;
+    rotate:-45deg;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.map-pin span{
+    rotate:45deg;
+    font-size:13px;
+}
+
+.map-name{
+    position:absolute;
+    left:54%;
+    top:59%;
+    transform:translateX(-50%);
+    font-size:12px;
+    font-weight:600;
+}
+
+.footer{
+    min-height:65px;
+    padding:0 5vw;
+    background:var(--black);
+    color:rgba(255,255,255,.72);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:10px;
+}
+
+
+/* ==================================================
+   MOBILE MENU
+================================================== */
+
+.mobile-menu{
+    position:fixed;
+    inset:0;
+    background:var(--yellow);
+    z-index:500;
+    transform:translateY(-100%);
+    transition:transform .45s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:27px;
+}
+
+.mobile-menu.open{
+    transform:translateY(0);
+}
+
+.mobile-menu a{
+    font-family:"Manrope",sans-serif;
+    font-size:38px;
+    line-height:1;
+}
+
+.mobile-menu .mobile-place{
+    margin-top:15px;
+    font-family:"DM Sans",sans-serif;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.close-menu{
+    position:absolute;
+    top:24px;
+    right:25px;
+    background:none;
+    border:0;
+    font-size:34px;
+    cursor:pointer;
+}
+
+
+/* ==================================================
+   LIGHTBOX
+================================================== */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    z-index:800;
+    background:rgba(0,0,0,.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:45px;
+}
+
+.lightbox.open{
+    display:flex;
+}
+
+.lightbox img{
+    width:auto;
+    height:auto;
+    max-width:92vw;
+    max-height:90vh;
+    object-fit:contain;
+}
+
+.lightbox-close{
+    position:absolute;
+    right:28px;
+    top:20px;
+    color:white;
+    font-size:38px;
+    cursor:pointer;
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media(max-width:1100px){
+
+    .navbar{
+        padding:0 30px;
+        grid-template-columns:120px 1fr 100px;
+    }
+
+    .logo{
+        left:30px;
+    }
+
+    .nav-links{
+        gap:22px;
+    }
+
+    .hero{
+        grid-template-columns:50% 28% 22%;
+        height:650px;
+    }
+
+    .hero h1{
+        font-size:72px;
+    }
+
+    .fidla-intro{
+        grid-template-columns:40% 38% 22%;
+    }
+
+    .intro-copy{
+        padding:60px 40px;
+    }
+
+    .offer-list{
+        padding:35px 22px;
+    }
+
+    .spaces{
+        grid-template-columns:30% 70%;
+    }
+
+    .spaces-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .space-image{
+        height:270px;
+    }
+
+    .contact-grid{
+        grid-template-columns:32% 68%;
+    }
+
+    .contact-map{
+        grid-column:1 / 3;
+        min-height:300px;
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:820px){
+
+    .navbar{
+        height:72px;
+        padding:0 20px;
+        display:flex;
+        justify-content:space-between;
+    }
+
+    .logo{
+    width:70px;
+    height:70px;
+    top:10px;
+    left:20px;
+}
+
+    .nav-links,
+    .nav-place{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:block;
+        margin-left:auto;
+    }
+
+    /* HERO */
+
+    .hero{
+        height:auto;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:570px 310px;
+    }
+
+    .hero-main{
+        grid-column:1 / 3;
+        grid-row:1;
+        border-right:0;
+        border-bottom:3px solid var(--cream);
+    }
+
+    .hero-cake{
+        grid-column:1;
+        grid-row:2;
+        border-right:3px solid var(--cream);
+    }
+
+    .hero-side{
+        grid-column:2;
+        grid-row:2;
+    }
+
+    .hero-content{
+        left:25px;
+        bottom:40px;
+        width:calc(100% - 50px);
+    }
+
+    .hero h1{
+        font-size:62px;
+        letter-spacing:-3px;
+        line-height:.82;
+    }
+
+    .hero-text{
+        max-width:430px;
+        font-size:14px;
+    }
+
+    .hero-buttons{
+        margin-top:24px;
+    }
+
+    .hero-button{
+        min-width:0;
+        padding:12px 16px;
+    }
+
+    .identity-strip{
+        justify-content:flex-start;
+        overflow-x:auto;
+        gap:20px;
+    }
+
+    /* INTRO */
+
+    .fidla-intro{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .intro-copy{
+        grid-column:1 / 3;
+        padding:85px 25px 60px;
+    }
+
+    .intro-copy h2{
+        font-size:55px;
+    }
+
+    .intro-display{
+        min-height:430px;
+    }
+
+    .offer-list{
+        padding:25px 20px;
+    }
+
+    .offer-item{
+        min-height:68px;
+    }
+
+    /* BREAKFAST */
+
+    .breakfast{
+        grid-template-columns:1fr 1fr;
+        min-height:0;
+    }
+
+    .breakfast-photo-left{
+        min-height:400px;
+    }
+
+    .breakfast-copy{
+        min-height:400px;
+        padding:50px 25px;
+    }
+
+    .breakfast-copy h2{
+        font-size:57px;
+    }
+
+    .breakfast-photo-right{
+        grid-column:1 / 3;
+        min-height:420px;
+    }
+
+    /* PRODUCTION */
+
+    .production-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .production-cake{
+        min-height:520px;
+    }
+
+    .production-copy{
+        min-height:520px;
+        padding:50px 28px;
+    }
+
+    .production-copy h2{
+        font-size:58px;
+    }
+
+    .production-mosaic{
+        grid-column:1 / 3;
+        height:520px;
+    }
+
+    /* GASTRO */
+
+    .gastro{
+        display:block;
+    }
+
+    .gastro-copy{
+        padding:60px 25px;
+    }
+
+    .gastro-brands{
+        border-top:1px solid rgba(255,255,255,.17);
+    }
+
+    /* SPACES */
+
+    .spaces{
+        display:block;
+    }
+
+    .spaces-copy{
+        padding:70px 25px;
+    }
+
+    .spaces-copy h2{
+        font-size:57px;
+    }
+
+    .spaces-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    /* GALLERY */
+
+    .gallery{
+        padding-top:75px;
+    }
+
+    .gallery-heading{
+        padding:0 25px 45px;
+        display:block;
+    }
+
+    .gallery-heading h2{
+        font-size:75px;
+        margin-bottom:20px;
+    }
+
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+        grid-auto-rows:210px;
+    }
+
+    .gallery-item:nth-child(1){
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .gallery-item:nth-child(4){
+        grid-row:span 1;
+    }
+
+    .gallery-item:nth-child(7){
+        grid-column:span 2;
+    }
+
+    .gallery-item:nth-child(10){
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .gallery-item:nth-child(13){
+        grid-row:span 1;
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid{
+        display:block;
+    }
+
+    .contact-title{
+        padding:70px 25px;
+    }
+
+    .contact-title h2{
+        font-size:57px;
+    }
+
+    .contact-info{
+        padding:45px 25px;
+    }
+
+    .contact-map{
+        height:300px;
+    }
+
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+================================================== */
+
+@media(max-width:520px){
+
+    .hero{
+        grid-template-rows:550px 230px;
+    }
+
+    .hero h1{
+        font-size:54px;
+    }
+
+    .hero-content{
+        bottom:32px;
+    }
+
+    .hero-text{
+        font-size:13px;
+    }
+
+    .hero-buttons{
+        gap:8px;
+    }
+
+    .hero-button{
+        font-size:9px;
+    }
+
+    .fidla-intro{
+        display:block;
+    }
+
+    .intro-copy{
+        padding:75px 22px 55px;
+    }
+
+    .intro-copy h2{
+        font-size:50px;
+    }
+
+    .intro-display{
+        height:400px;
+        min-height:0;
+    }
+
+    .offer-list{
+        padding:35px 22px;
+    }
+
+    .breakfast{
+        display:block;
+    }
+
+    .breakfast-photo-left{
+        height:360px;
+        min-height:0;
+    }
+
+    .breakfast-copy{
+        min-height:0;
+        padding:60px 22px;
+    }
+
+    .breakfast-photo-right{
+        height:350px;
+        min-height:0;
+    }
+
+    .production-grid{
+        display:block;
+    }
+
+    .production-cake{
+        height:450px;
+        min-height:0;
+    }
+
+    .production-copy{
+        min-height:0;
+        padding:65px 22px;
+    }
+
+    .production-mosaic{
+        height:550px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:45% 55%;
+    }
+
+    .production-small{
+        grid-column:1;
+        grid-row:1;
+    }
+
+    .production-tall{
+        grid-column:2;
+        grid-row:1;
+    }
+
+    .production-sweetbar{
+        grid-column:1 / 3;
+        grid-row:2;
+    }
+
+    .gastro-brands{
+        display:block;
+    }
+
+    .gastro-brand{
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.17);
+        padding:32px 25px;
+    }
+
+    .spaces-grid{
+        display:block;
+    }
+
+    .space-item{
+        border-left:0;
+        border-bottom:1px solid var(--line);
+    }
+
+    .space-image{
+        height:330px;
+    }
+
+    .gallery-grid{
+        grid-auto-rows:180px;
+    }
+
+    .contact-info{
+        display:block;
+    }
+
+    .contact-box{
+        padding:18px 0;
+        border-bottom:1px solid var(--line);
+    }
+
+    .contact-actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        margin-top:25px;
+    }
+
+    .contact-btn.primary{
+        grid-column:1 / 3;
+    }
+
+    .footer{
+        padding:22px;
+        min-height:0;
+        gap:12px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- NAV -->
+
+<nav class="navbar">
+
+    <ul class="nav-links">
+    <li><a href="#uvod">Domů</a></li>
+    <li><a href="#fidla">O nás</a></li>
+    <li><a href="#snidane">Snídaně</a></li>
+    <li><a href="#vyroba">Zakázková výroba</a></li>
+    <li><a href="#prostory">Prostory</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+</ul>
+
+<a href="#kontakt" class="nav-order">Objednávky →</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Otevřít menu">☰</button>
+
+</nav>
+
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <button class="close-menu" id="closeMenu" aria-label="Zavřít menu">×</button>
+
+    <a href="#uvod">Domů</a>
+<a href="#fidla">O nás</a>
+<a href="#snidane">Snídaně</a>
+<a href="#vyroba">Zakázková výroba</a>
+<a href="#prostory">Prostory</a>
+<a href="#galerie">Galerie</a>
+<a href="#kontakt">Kontakt</a>
+
+    <span class="mobile-place">Smiřice</span>
+
+</div>
+
+
+<!-- HERO -->
+
+<header class="hero" id="uvod">
+
+    <img src="hero.webp" alt="Fidla kavárna ve Smiřicích" class="hero-image">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+    <img src="logo.png" alt="Fidla" class="hero-logo">
+
+    <h1>
+    Kavárna<br>
+    Bistro<br>
+    <span class="hero-city">Smiřice</span>
+</h1>
+
+    <p class="hero-text">
+    Káva, snídaně, dorty a zákusky z vlastní výroby,<br>
+    sweet bary a catering pro každou příležitost.
+</p>
+
+    <div class="hero-buttons">
+
+        <a href="#fidla" class="hero-button primary">
+            Poznejte Fidlu
+        </a>
+
+        <a href="#kontakt" class="hero-button">
+            Kontakt
+        </a>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- BLACK STRIP -->
+
+<div class="identity-strip">
+
+    <span>KAVÁRNA</span>
+    <i></i>
+
+    <span>DORTY</span>
+    <i></i>
+
+    <span>ZÁKUSKY</span>
+    <i></i>
+
+    <span>Snídaně</span>
+    <i></i>
+
+    <span>Sweet bary</span>
+    <i></i>
+
+    <span>Catering</span>
+    <i></i>
+
+    <span>Smiřice</span>
+
+</div>
+
+
+<!-- FIDLA INTRO -->
+
+<section class="fidla-intro" id="fidla">
+
+    <div class="intro-copy">
+
+       <h2>
+    Dobré jídlo,<br>
+    skvělé zákusky.
+
+</h2>
+
+        <p>
+            Fidla je kavárna ve Smiřicích, kde můžete začít den
+            snídaní, zastavit se na kávu a něco sladkého nebo posedět
+            s rodinou a přáteli. Součástí Fidly je vlastní výroba
+            dortů a zákusků, zakázková výroba, sweet bary a catering.
+        </p>
+
+        <a href="#snidane" class="text-link">
+            Více o Fidle →
+        </a>
+
+    </div>
+
+
+    <div class="intro-display photo">
+    <img
+        src="zakusky.webp"
+        alt="Zákusky z vlastní výroby Fidla"
+    >
+</div>
+
+
+    <div class="offer-list">
+
+        <div class="offer-item">
+    <span class="offer-mark"></span>
+    <span>Dorty a zákusky</span>
+</div>
+
+<div class="offer-item">
+    <span class="offer-mark"></span>
+    <span>Snídaně a jídlo</span>
+</div>
+
+<div class="offer-item">
+    <span class="offer-mark"></span>
+    <span>Sweet bary a oslavy</span>
+</div>
+
+    </div>
+
+</section>
+
+<div class="fidla-slogan">
+    <span>Od snídaně až po sklenku vína.</span>
+    <strong>Ve Fidle</strong>
+    <span>si každý najde to svoje.</span>
+</div>
+
+
+<!-- BREAKFAST -->
+
+<section class="breakfast" id="snidane">
+
+    <div class="breakfast-photo-left photo">
+        <img
+            src="snidane1.webp"
+            alt="Snídaně ve Fidle"
+        >
+    </div>
+
+    <div class="breakfast-copy">
+
+        <span class="section-label">Snídaně</span>
+
+        <h2>
+            Ráno<br>
+            ve Fidle.
+        </h2>
+
+        <p>
+            Snídaňovou nabídku pravidelně obměňujeme.
+            Sladké i slané snídaně, káva a chvíle,
+            kvůli kterým stojí za to ráno nikam nespěchat.
+            Aktuální nabídku najdete na našem Facebooku.
+        </p>
+
+        <a href="https://www.facebook.com/KavarnaFidla"
+           class="text-link"
+           target="_blank"
+           rel="noopener noreferrer">
+            Aktuální nabídka →
+        </a>
+
+    </div>
+
+    <div class="breakfast-photo-right photo">
+        <img
+            src="snidane2.webp"
+            alt="Snídaňová nabídka Fidla"
+        >
+    </div>
+
+</section>
+
+
+<!-- PRODUCTION -->
+
+<section class="production" id="vyroba">
+
+    <div class="production-grid">
+
+        <div class="production-cake photo">
+    <img
+        src="dort1.webp"
+        alt="Zakázkový dort Fidla"
+    >
+</div>
+
+
+        <div class="production-copy">
+
+            <span class="section-label">Zakázková výroba</span>
+
+            <h2>
+                Dorty,<br>
+                zákusky<br>
+                a sweet bary.
+            </h2>
+
+            <p>
+                Pečeme dorty, zákusky i slané občerstvení.
+                Připravujeme zakázky pro rodinné oslavy,
+                svatby, firemní akce a další příležitosti.
+            </p>
+
+            <a href="#kontakt" class="text-link">
+                Nezávazná poptávka →
+            </a>
+
+        </div>
+
+
+        <div class="production-mosaic">
+
+            <div class="production-small photo">
+
+    <img
+        src="zakusky-ovoce.webp"
+        alt="Ovocné zákusky Fidla"
+    >
+
+</div>
+
+
+            <div class="production-sweetbar photo">
+
+    <img
+        src="dort2.webp"
+        alt="Zakázkový dort Fidla"
+    >
+
+</div>
+
+
+            <div class="production-tall photo">
+
+    <img
+        src="makronky.webp"
+        alt="Makronky Fidla"
+    >
+
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GASTRO -->
+
+<section class="gastro">
+
+    <div class="gastro-copy">
+        <h2>Z Fidly i dál.</h2>
+
+        <p>
+            Naše výrobky dodáváme také do kaváren
+            a dalších podniků v Hradci Králové a okolí.
+        </p>
+    </div>
+
+    <div class="gastro-places">
+
+        <span class="gastro-label">
+            Naše výrobky najdete například také v
+        </span>
+
+        <div class="gastro-names">
+    <strong>Náplavka Bistro <span class="gastro-and">a</span> Café 149</strong>
+</div>
+
+    </div>
+
+</section>
+
+
+<!-- SPACES -->
+
+<section class="spaces" id="prostory">
+
+    <div class="spaces-copy">
+
+        <h2>
+            Takhle to u nás vypadá
+        </h2>
+
+        <p>
+            Uvnitř, venku, s dětmi nebo při soukromém setkání.
+            Fidla nabízí útulné prostředí, venkovní posezení,
+            dětský koutek i salonek pro soukromé oslavy nebo workshopy.
+        </p>
+
+        <a href="#kontakt" class="text-link">
+            Kde nás najdete →
+        </a>
+
+    </div>
+
+
+    <div class="spaces-grid">
+
+        <article class="space-item">
+
+            <div class="space-image photo">
+                <img
+                    src="interier.webp"
+                    alt="Interiér kavárny Fidla ve Smiřicích"
+                >
+            </div>
+
+            <div class="space-info">
+                <h3>Kavárna</h3>
+            </div>
+
+        </article>
+
+
+        <article class="space-item">
+
+            <div class="space-image photo">
+                <img
+                    src="posezeni.webp"
+                    alt="Venkovní posezení kavárny Fidla ve Smiřicích"
+                >
+            </div>
+
+            <div class="space-info">
+                <h3>Venkovní posezení</h3>
+            </div>
+
+        </article>
+
+
+        <article class="space-item">
+
+            <div class="space-image photo">
+                <img
+                    src="detsky-koutek.webp"
+                    alt="Dětský koutek v kavárně Fidla ve Smiřicích"
+                >
+            </div>
+
+            <div class="space-info">
+                <h3>Dětský koutek</h3>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- GALLERY – není v menu -->
+
+<section class="gallery" id="galerie">
+
+    <div class="gallery-heading">
+
+        <div>
+
+            <h2>Sladké, slané, naše.</h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+    <img src="dort_galery_1.webp" alt="Dort z vlastní výroby Fidla">
+</div>
+
+        <div class="gallery-item">
+    <img src="zakusek23.webp" alt="Zákusek z vlastní výroby Fidla">
+</div>
+
+        <div class="gallery-item">
+    <img src="dort66.webp" alt="Dort z vlastní výroby Fidla">
+</div>
+
+        <div class="gallery-item">
+    <img src="svatba.webp" alt="Svatební catering Fidla">
+</div>
+
+        <div class="gallery-item">
+    <img src="snidane_galery_1.webp" alt="Snídaně ve Fidle">
+</div>
+
+        <div class="gallery-item">
+    <img src="zakusek22.webp" alt="Zákusek z vlastní výroby Fidla">
+</div>
+
+        <div class="gallery-item">
+    <img src="sweetbar.webp" alt="Sweet bar Fidla">
+</div>
+
+        <div class="gallery-item">
+    <img src="snidane3.webp" alt="Snídaně ve Fidle">
+</div>
+
+        <div class="gallery-item">
+    <img src="vanoce.webp" alt="Vánoční nabídka Fidla">
+</div>
+
+<div class="gallery-item">
+    <img src="palacinky.webp" alt="Palačinky ve Fidle">
+</div>
+
+<div class="gallery-item">
+    <img src="omeleta.webp" alt="Omeleta ve Fidle">
+</div>
+
+<div class="gallery-item">
+    <img src="dort89.webp" alt="Dort z vlastní výroby Fidla">
+</div>
+
+<div class="gallery-item">
+    <img src="detsky-dort.webp" alt="Dětský dort z vlastní výroby Fidla">
+</div>
+
+<div class="gallery-item">
+    <img src="dort-top.webp" alt="Dort z vlastní výroby Fidla">
+</div>
+
+<div class="gallery-item">
+    <img src="snidanesl.webp" alt="Slaná snídaně ve Fidle">
+</div>
+
+<div class="gallery-item">
+    <img src="dortfin.webp" alt="Dort z vlastní výroby Fidla">
+</div>
+
+    </div>
+
+</section>
+
+<div class="gallery-contact-divider"></div>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="kontakt">
+
+    <div class="contact-grid">
+
+        <div class="contact-title">
+
+            
+
+            <h2>
+                Těšíme se<br>
+                na Vaši<br>
+                návštěvu.
+            </h2>
+
+        </div>
+
+
+        <div class="contact-info">
+
+            <div class="contact-box">
+    <small>Adresa</small>
+
+    <p>
+        <a href="https://maps.app.goo.gl/3cgVjTTo22zS7uvM7"
+           target="_blank"
+           rel="noopener noreferrer">
+            Palackého 125<br>
+            Smiřice 503 03
+        </a>
+    </p>
+</div>
+
+
+            <div class="contact-box">
+    <small>Otevírací doba</small>
+
+    <p>
+        Po–Ne<br>
+        9:00–18:00
+    </p>
+</div>
+
+
+            <div class="contact-box">
+    <small>Kontakt</small>
+
+    <p>
+        <a href="tel:+420704422459">+420 704 422 459</a><br>
+        <a href="mailto:info@fidlakavarna.cz">info@fidlakavarna.cz</a>
+    </p>
+</div>
+
+
+            <div class="contact-actions">
+
+    <a href="https://www.facebook.com/KavarnaFidla"
+       class="contact-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+        Facebook
+    </a>
+
+    <a href="https://www.instagram.com/kavarnafidla/"
+       class="contact-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+        Instagram
+    </a>
+
+</div>
+
+        </div>
+
+
+      <div class="contact-logo">
+    <img src="fidla.png" alt="Fidla">
+</div>
+
+    </div>
+
+
+    <footer class="footer">
+
+        <span>© Fidla 2026</span>
+
+        <span>Web vytvořila ZajaIT</span>
+
+    </footer>
+
+</section>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+    <span class="lightbox-close" id="lightboxClose">×</span>
+
+    <img id="lightboxImage" src="" alt="">
+
+</div>
+
+
+<script>
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+const closeMenu = document.getElementById("closeMenu");
+
+function openMobileMenu(){
+    mobileMenu.classList.add("open");
+    document.body.classList.add("menu-open");
+}
+
+function closeMobileMenu(){
+    mobileMenu.classList.remove("open");
+    document.body.classList.remove("menu-open");
+}
+
+menuToggle.addEventListener("click", openMobileMenu);
+closeMenu.addEventListener("click", closeMobileMenu);
+
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+    link.addEventListener("click", closeMobileMenu);
+});
+
+
+/* ================================
+   LIGHTBOX
+================================ */
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxClose = document.getElementById("lightboxClose");
+
+document.querySelectorAll(".gallery-item img").forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+
+        lightbox.classList.add("open");
+        document.body.classList.add("lightbox-open");
+
+    });
+
+});
+
+function closeLightbox(){
+
+    lightbox.classList.remove("open");
+    document.body.classList.remove("lightbox-open");
+
+}
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", event => {
+
+    if(event.target === lightbox){
+        closeLightbox();
+    }
+
+});
+
+
+/* ================================
+   ESC
+================================ */
+
+document.addEventListener("keydown", event => {
+
+    if(event.key === "Escape"){
+        closeLightbox();
+        closeMobileMenu();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
