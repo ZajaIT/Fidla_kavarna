@@ -729,7 +729,6 @@ button{
 
 .gallery-item{
     overflow:hidden;
-    cursor:pointer;
 }
 
 
@@ -2078,17 +2077,6 @@ button{
 </section>
 
 
-<!-- LIGHTBOX -->
-
-<div class="lightbox" id="lightbox">
-
-    <span class="lightbox-close" id="lightboxClose">×</span>
-
-    <img id="lightboxImage" src="" alt="">
-
-</div>
-
-
 <script>
 
 /* ================================
@@ -2118,53 +2106,12 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
 
 
 /* ================================
-   LIGHTBOX
-================================ */
-
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxClose = document.getElementById("lightboxClose");
-
-document.querySelectorAll(".gallery-item img").forEach(img => {
-
-    img.addEventListener("click", () => {
-
-        lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt;
-
-        lightbox.classList.add("open");
-        document.body.classList.add("lightbox-open");
-
-    });
-
-});
-
-function closeLightbox(){
-
-    lightbox.classList.remove("open");
-    document.body.classList.remove("lightbox-open");
-
-}
-
-lightboxClose.addEventListener("click", closeLightbox);
-
-lightbox.addEventListener("click", event => {
-
-    if(event.target === lightbox){
-        closeLightbox();
-    }
-
-});
-
-
-/* ================================
    ESC
 ================================ */
 
 document.addEventListener("keydown", event => {
 
     if(event.key === "Escape"){
-        closeLightbox();
         closeMobileMenu();
     }
 
