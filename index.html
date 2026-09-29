@@ -1091,9 +1091,11 @@ button{
     }
 
     .menu-toggle{
-        display:block;
-        margin-left:auto;
-    }
+    display:block;
+    margin-left:auto;
+    position:relative;
+    z-index:1001;
+}
 
     /* HERO */
 
@@ -1524,8 +1526,6 @@ button{
 <!-- MOBILE MENU -->
 
 <div class="mobile-menu" id="mobileMenu">
-
-    <button class="close-menu" id="closeMenu" aria-label="Zavřít menu">×</button>
 
     <a href="#uvod">Domů</a>
 <a href="#fidla">O nás</a>
@@ -2085,20 +2085,28 @@ button{
 
 const menuToggle = document.getElementById("menuToggle");
 const mobileMenu = document.getElementById("mobileMenu");
-const closeMenu = document.getElementById("closeMenu");
 
 function openMobileMenu(){
     mobileMenu.classList.add("open");
     document.body.classList.add("menu-open");
+    menuToggle.textContent = "×";
+    menuToggle.setAttribute("aria-label", "Zavřít menu");
 }
 
 function closeMobileMenu(){
     mobileMenu.classList.remove("open");
     document.body.classList.remove("menu-open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-label", "Otevřít menu");
 }
 
-menuToggle.addEventListener("click", openMobileMenu);
-closeMenu.addEventListener("click", closeMobileMenu);
+menuToggle.addEventListener("click", () => {
+    if(mobileMenu.classList.contains("open")){
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+});
 
 document.querySelectorAll(".mobile-menu a").forEach(link => {
     link.addEventListener("click", closeMobileMenu);
