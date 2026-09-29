@@ -1424,42 +1424,27 @@ button{
     }
 
     .production-grid{
-    display:block;
+    display:flex;
+    flex-direction:column;
     height:auto;
     overflow:visible;
 }
 
-    .production-cake{
-        height:450px;
-        min-height:0;
-    }
+.production-copy{
+    order:1;
+    min-height:0;
+    padding:65px 22px;
+}
 
-    .production-copy{
-        min-height:0;
-        padding:65px 22px;
-    }
+.production-cake{
+    order:2;
+    height:450px;
+    min-height:0;
+}
 
-    .production-mosaic{
-        height:550px;
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:45% 55%;
-    }
-
-    .production-small{
-        grid-column:1;
-        grid-row:1;
-    }
-
-    .production-tall{
-        grid-column:2;
-        grid-row:1;
-    }
-
-    .production-sweetbar{
-        grid-column:1 / 3;
-        grid-row:2;
-    }
+.production-mosaic{
+    display:none;
+}
 
    .gastro-copy{
     padding:55px 22px;
