@@ -752,10 +752,6 @@ button{
     background:var(--black);
 }
 
-    .gallery-mobile-only{
-    display:none;
-}
-
 
 /* ==================================================
    CONTACT
@@ -1286,9 +1282,10 @@ button{
     }
 
     .gallery-grid{
-        grid-template-columns:repeat(2,1fr);
-        grid-auto-rows:210px;
-    }
+    grid-template-columns:repeat(2,1fr);
+    grid-auto-rows:210px;
+    grid-auto-flow:dense;
+}
 
     .gallery-item:nth-child(1){
         grid-column:span 2;
@@ -1485,10 +1482,6 @@ button{
     .gallery-grid{
         grid-auto-rows:180px;
     }
-
-    .gallery-mobile-only{
-    display:block;
-}
 
     .contact-info{
         display:block;
@@ -1979,9 +1972,7 @@ button{
         <div class="gallery-item">
     <img src="zakusek22.webp" alt="Zákusek z vlastní výroby Fidla">
 </div>
-                <div class="gallery-item gallery-mobile-only">
-    <img src="sladke.webp" alt="Sladká nabídka Fidla">
-</div>
+
 
         <div class="gallery-item">
     <img src="sweetbar.webp" alt="Sweet bar Fidla">
