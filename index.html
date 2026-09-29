@@ -1341,8 +1341,23 @@ button{
 @media(max-width:520px){
 
     .hero{
-        grid-template-rows:550px 230px;
-    }
+    height:auto;
+    display:block;
+    position:relative;
+    aspect-ratio:941 / 1672;
+}
+
+.hero picture{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.hero-image{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
 
     .hero h1{
         font-size:54px;
